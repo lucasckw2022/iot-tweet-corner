@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>{{ $main.message }}</h1>
+  <input data-ng-model="$main.searchTweets" placeholder="Search Tweets Here"></input>
+  <button data-ng-click="$main.search()">Search</button>
+  <input type="checkbox" data-ng-click="$main.imageToggle()"></input>
+  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable"></tweets-list>
+</div>

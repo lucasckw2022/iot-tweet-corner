@@ -1,0 +1,10 @@
+<table>
+  <tr data-ng-repeat="tweet in $tweets.tweets">
+    <td>
+      <span>{{ tweet.text }}</span>
+      <img  data-ng-src={{tweet.entities.media[0].media_url}} 
+            data-ng-class="{'ng-hide' : !$tweets.imageEnable }" 
+            alt="">
+    </td>
+  </tr>
+</table>
