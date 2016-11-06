@@ -1,7 +1,7 @@
 {
   "name": "mnubo_test",
   "version": "1.0.0",
-  "description": "This is a exercise from Mnubo",
+  "description": "This is a exercise from Mnubo, in order for code review, I have also pushed the src folder and gulpfile",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,6 +20,7 @@
     "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
+    "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "method-override": "~2.0.2",
     "vinyl-source-stream": "^1.1.0"

@@ -31802,8 +31802,8 @@ exports.default = _angular2.default.module('app', ['main', 'templates', 'tweets'
 'use strict';
 
 angular.module('templates', []).run(['$templateCache', function ($templateCache) {
-  $templateCache.put('main/main.html', '<div class="container">\n  <h1>{{ $main.message }}</h1>\n  <input data-ng-model="$main.searchTweets" placeholder="Search Tweets Here"></input>\n  <button data-ng-click="$main.search()">Search</button>\n  <input type="checkbox" data-ng-click="$main.imageToggle()"></input>\n  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable"></tweets-list>\n</div>');
-  $templateCache.put('tweets/tweets.html', '<table>\n  <tr data-ng-repeat="tweet in $tweets.tweets">\n    <td>\n      <span>{{ tweet.text }}</span>\n      <img  data-ng-src={{tweet.entities.media[0].media_url}} \n            data-ng-class="{\'ng-hide\' : !$tweets.imageEnable }" \n            alt="">\n    </td>\n  </tr>\n</table>');
+  $templateCache.put('main/main.html', '<section class="top-area {{$main.state.fadeOut}}" ng-class="$main.state.searched ? \'searched\' : \'search\'">\n  <h1>{{ $main.state.title }}</h1>\n  <form class="search-area">\n    <input type="text" data-ng-model="$main.searchTweets" placeholder="Search Tweets Here"></input>\n    <button class="btn btn-primary" data-ng-click="$main.search()">Search</button>\n  </form>\n  <div class="image-toggle">\n    <input type="checkbox" data-ng-click="$main.imageToggle()" id="image-toggle"></input>\n    <label for="image-toggle">{{$main.state.imageToggleLabel}} Tweets Image</label>\n  </div>\n<div ng-show="$main.state.error">Opsss. No Tweets Searched</div>\n</section>\n<section class="tweets-list">\n  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable" limit="$main.state.searchLimit"></tweets-list>\n</section>');
+  $templateCache.put('tweets/tweets.html', '<div class="tweets">\n  <div class="card" data-ng-repeat="tweet in $tweets.tweets | limitTo:$tweets.limit">\n    <div class="card-block text-xs-center">\n      {{ tweet.text }}\n    </div>\n    <img  data-ng-src={{tweet.entities.media[0].media_url}} \n          data-ng-class="{\'ng-hide\' : !$tweets.imageEnable }" \n          alt="">\n  </div>\n  <button class="btn btn-secondary" \n          ng-show="$tweets.tweets.length > 0" \n          data-ng-click="$tweets.loadMore()">Load More</button>\n</div>\n<a  class="back-to-top btn btn-secondary" \n    ng-show="$tweets.tweets.length > 0" \n    href="#">\n  <i class="fa fa-angle-up"></i>\n</a>');
 }]);
 
 },{}],5:[function(require,module,exports){
@@ -31839,12 +31839,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var MainController = function () {
-  function MainController($http) {
+  function MainController($http, $animate) {
     _classCallCheck(this, MainController);
 
-    this.state = { imageEnable: true, text: "Show" };
-    this.message = "Twitter with #iot";
+    this.state = { imageEnable: true,
+      text: "Show",
+      title: "Mnubo's #IoT Tweets Corner",
+      imageToggleLabel: "Check to hide",
+      searched: false,
+      fadeOut: "",
+      searchLimit: 5
+    };
     this.$http = $http;
+    this.$animate = $animate;
   }
 
   _createClass(MainController, [{
@@ -31853,10 +31860,13 @@ var MainController = function () {
       var _this = this;
 
       this.tweets = "";
-      this.$http.post("/authorize").then(function (res) {
+      this.state.fadeOut = "fade-out";
+      this.$http.post("/authorize").success(function (res) {
         _this.$http.post("/search", 'q=' + _this.searchTweets, { headers: { 'Content-Type': 'application/X-www-form-urlencoded' }
         }).then(function (res) {
           console.log(res.data.data);
+          _this.state.searched = true;
+          res.data.data.statuses.length == 0 ? _this.state.error = true : _this.state.error = false;
           _this.tweets = res.data.data.statuses;
         });
       });
@@ -31864,9 +31874,8 @@ var MainController = function () {
   }, {
     key: "imageToggle",
     value: function imageToggle() {
-      console.log("before: " + this.state.imageEnable);
       this.state.imageEnable = !this.state.imageEnable;
-      console.log("after: " + this.state.imageEnable);
+      this.state.imageEnable ? this.state.imageToggleLabel = "Check to hide" : this.state.imageToggleLabel = "Uncheck to show";
     }
   }]);
 
@@ -31914,7 +31923,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TweetsList = {
     bindings: {
         tweets: "<",
-        imageEnable: "<"
+        imageEnable: "<",
+        limit: "<"
     },
     templateUrl: "tweets/tweets.html",
     controller: _tweetsController2.default,
@@ -31930,11 +31940,24 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TweetsController = function TweetsController() {
-    _classCallCheck(this, TweetsController);
-};
+var TweetsController = function () {
+    function TweetsController() {
+        _classCallCheck(this, TweetsController);
+    }
+
+    _createClass(TweetsController, [{
+        key: "loadMore",
+        value: function loadMore() {
+            this.limit = this.limit + 5;
+        }
+    }]);
+
+    return TweetsController;
+}();
 
 exports.default = TweetsController;
 

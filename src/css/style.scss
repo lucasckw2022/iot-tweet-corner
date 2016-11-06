@@ -1,0 +1,108 @@
+$main-color: #25aae2;
+@mixin flex-box($justify-content:nil,$flex-direction:nil,$align-items:nil) {
+  display: flex;
+  @if $justify-content != nil {justify-content: $justify-content;}
+  @if $flex-direction != nil {flex-direction: $flex-direction;}
+  @if $align-items != nil {align-items: $align-items;}
+}
+
+.top-area {
+    @include flex-box(center, column, center);
+    transition: all .5s;
+    h1 {
+     font-weight: 700;
+     color: $main-color;
+    }
+    .search-area {
+        @include flex-box();
+        font-size: 16px;
+        margin: 0 0 5px 0;
+        input[type="text"] {
+            border-radius: 5px;
+            box-sizing: border-box; 
+            padding: 0 0 0 5px;
+            &::-webkit-input-placeholder {
+                color: #0084B4;
+            }
+            &:focus {
+                &::-webkit-input-placeholder {
+                    color: #8899a6;
+                }
+            }
+        }
+        button {
+            background: $main-color;
+            color: #fff;
+            border-radius: 5px;
+            border: 1px $main-color solid;
+            text-transform: uppercase;
+            margin: 0 0 0 10px;
+            transition: all .5s;
+            &:hover {
+                background: $main-color;
+                opacity: 0.8;
+                border: 1px $main-color solid;
+                transition: all .5s;
+            }
+        }
+    }
+}
+
+.search {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.searched {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 10;
+}
+
+.search.fade-out {
+    opacity: 0;
+}
+
+.tweets {
+    @include flex-box(nil,column);
+    width: 60%;
+    margin: 135px auto 40px auto;
+    .card {
+        width: 100%;
+        &:hover {
+            background: #f5f8fa;
+        }
+        img {
+            width: 100%;
+        }
+    }
+    button {
+        transition: background-color .5s;
+        &:hover {
+            background: #f25b2c;
+            color: #fff;
+            transition: background-color .5s;
+        }
+    }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: background-color .5s;
+    &:hover {
+        background: #f25b2c;
+        color: #fff;
+        transition: background-color .5s;
+        &:after {
+            content: "Back to top"
+        }
+    }
+}

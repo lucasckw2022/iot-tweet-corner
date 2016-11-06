@@ -1,0 +1,82 @@
+.top-area {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  transition: all .5s; }
+  .top-area h1 {
+    font-weight: 700;
+    color: #25aae2; }
+  .top-area .search-area {
+    display: flex;
+    font-size: 16px;
+    margin: 0 0 5px 0; }
+    .top-area .search-area input[type="text"] {
+      border-radius: 5px;
+      box-sizing: border-box;
+      padding: 0 0 0 5px; }
+      .top-area .search-area input[type="text"]::-webkit-input-placeholder {
+        color: #0084B4; }
+      .top-area .search-area input[type="text"]:focus::-webkit-input-placeholder {
+        color: #8899a6; }
+    .top-area .search-area button {
+      background: #25aae2;
+      color: #fff;
+      border-radius: 5px;
+      border: 1px #25aae2 solid;
+      text-transform: uppercase;
+      margin: 0 0 0 10px;
+      transition: all .5s; }
+      .top-area .search-area button:hover {
+        background: #25aae2;
+        opacity: 0.8;
+        border: 1px #25aae2 solid;
+        transition: all .5s; }
+
+.search {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+.searched {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 10; }
+
+.search.fade-out {
+  opacity: 0; }
+
+.tweets {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 135px auto 40px auto; }
+  .tweets .card {
+    width: 100%; }
+    .tweets .card:hover {
+      background: #f5f8fa; }
+    .tweets .card img {
+      width: 100%; }
+  .tweets button {
+    transition: background-color .5s; }
+    .tweets button:hover {
+      background: #f25b2c;
+      color: #fff;
+      transition: background-color .5s; }
+
+.back-to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: background-color .5s; }
+  .back-to-top:hover {
+    background: #f25b2c;
+    color: #fff;
+    transition: background-color .5s; }
+    .back-to-top:hover:after {
+      content: "Back to top"; }

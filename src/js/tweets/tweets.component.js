@@ -2,11 +2,12 @@ import TweetsController from './tweets.controller.js';
 
 var TweetsList = {
     bindings: {
-        tweets: "<",
-        imageEnable: "<"
+        tweets     : "<",
+        imageEnable: "<",
+        limit      : "<"
     },
-    templateUrl: "tweets/tweets.html",
-    controller: TweetsController,
+    templateUrl : "tweets/tweets.html",
+    controller  : TweetsController,
     controllerAs: "$tweets"
 };
 

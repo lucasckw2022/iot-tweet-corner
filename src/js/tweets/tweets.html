@@ -1,10 +1,18 @@
-<table>
-  <tr data-ng-repeat="tweet in $tweets.tweets">
-    <td>
-      <span>{{ tweet.text }}</span>
-      <img  data-ng-src={{tweet.entities.media[0].media_url}} 
-            data-ng-class="{'ng-hide' : !$tweets.imageEnable }" 
-            alt="">
-    </td>
-  </tr>
-</table>
+<div class="tweets">
+  <div class="card" data-ng-repeat="tweet in $tweets.tweets | limitTo:$tweets.limit">
+    <div class="card-block text-xs-center">
+      {{ tweet.text }}
+    </div>
+    <img  data-ng-src={{tweet.entities.media[0].media_url}} 
+          data-ng-class="{'ng-hide' : !$tweets.imageEnable }" 
+          alt="">
+  </div>
+  <button class="btn btn-secondary" 
+          ng-show="$tweets.tweets.length > 0" 
+          data-ng-click="$tweets.loadMore()">Load More</button>
+</div>
+<a  class="back-to-top btn btn-secondary" 
+    ng-show="$tweets.tweets.length > 0" 
+    href="#">
+  <i class="fa fa-angle-up"></i>
+</a>
