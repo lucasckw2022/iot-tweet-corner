@@ -1,12 +1,12 @@
 <section class="top-area {{$main.state.fadeOut}}" ng-class="$main.state.searched ? 'searched' : 'search'">
-  <h1>{{ $main.state.title }}</h1>
+  <h1>{{$main.state.title}}</h1>
   <form class="search-area">
     <input type="text" data-ng-model="$main.searchTweets" placeholder="Search Tweets Here"></input>
     <button class="btn btn-primary" data-ng-click="$main.search()">Search</button>
   </form>
   <div class="image-toggle">
     <input type="checkbox" data-ng-click="$main.imageToggle()" id="image-toggle"></input>
-    <label for="image-toggle">{{$main.state.imageToggleLabel}} Tweets Image</label>
+    <label for="image-toggle">{{$main.state.imageToggleLabe}} Tweets Image</label>
   </div>
 <div ng-show="$main.state.error">Opsss. No Tweets Searched</div>
 </section>

@@ -1,6 +1,6 @@
 <div class="tweets">
   <div class="card card-block" data-ng-repeat="tweet in $tweets.tweets | limitTo:$tweets.limit">
-    <div class="card-title"><img src="{{tweet.user.profile_image_url}}" /> {{ tweet.user.name }}</div>
+    <div class="card-title"><img src="{{tweet.user.profile_image_url}}" /> {{tweet.user.name}}</div>
     <div class="card-block">
       {{ tweet.text }}
     </div>
