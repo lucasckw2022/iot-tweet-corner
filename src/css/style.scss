@@ -77,6 +77,10 @@ $main-color: #25aae2;
         &:hover {
             background: #f5f8fa;
         }
+        .card-title img {
+            width: 30px;
+            border-radius: 15px;
+        }
         img {
             width: 100%;
         }

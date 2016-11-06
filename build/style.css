@@ -59,6 +59,9 @@
     width: 100%; }
     .tweets .card:hover {
       background: #f5f8fa; }
+    .tweets .card .card-title img {
+      width: 30px;
+      border-radius: 15px; }
     .tweets .card img {
       width: 100%; }
   .tweets button {

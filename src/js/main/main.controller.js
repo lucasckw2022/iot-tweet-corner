@@ -15,13 +15,12 @@ export default class MainController {
         this.tweets        = "";
         this.state.fadeOut = "fade-out";
         this.$http.post("/authorize")
-        .success(res=>{
+        .success(res =>{
             this.$http.post("/search",
                             'q='+this.searchTweets,
                             { headers: { 'Content-Type' : 'application/X-www-form-urlencoded'}
             })
-            .then((res)=>{
-              console.log(res.data.data)
+            .then(res =>{
               this.state.searched = true;
               res.data.data.statuses.length == 0 ? this.state.error = true : this.state.error = false;
               this.tweets = res.data.data.statuses;
