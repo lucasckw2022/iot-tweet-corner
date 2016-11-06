@@ -5,6 +5,17 @@ $main-color: #25aae2;
   @if $flex-direction != nil {flex-direction: $flex-direction;}
   @if $align-items != nil {align-items: $align-items;}
 }
+@mixin button($hover,$focus:$hover){
+    transition: all .5s;
+        &:focus {
+            background: $focus;
+        }
+        &:hover,&:active {
+            background: $hover;
+            color: #fff;
+            transition: all .5s;
+        }
+}
 
 .top-area {
     @include flex-box(center, column, center);
@@ -31,18 +42,16 @@ $main-color: #25aae2;
             }
         }
         button {
+            @include button($main-color)
             background: $main-color;
+            margin: 0 0 0 10px;
             color: #fff;
             border-radius: 5px;
             border: 1px $main-color solid;
             text-transform: uppercase;
-            margin: 0 0 0 10px;
-            transition: all .5s;
             &:hover {
-                background: $main-color;
                 opacity: 0.8;
                 border: 1px $main-color solid;
-                transition: all .5s;
             }
         }
     }
@@ -86,27 +95,19 @@ $main-color: #25aae2;
         }
     }
     button {
-        transition: background-color .5s;
-        &:hover {
-            background: #f25b2c;
-            color: #fff;
-            transition: background-color .5s;
-        }
+        @include button(#f25b2c,#fff);
     }
 }
 
 .back-to-top {
+    @include button(#f25b2c,#fff);
     position: fixed;
     bottom: 10px;
     right: 10px;
     cursor: pointer;
-    transition: background-color .5s;
     &:hover {
-        background: #f25b2c;
-        color: #fff;
-        transition: background-color .5s;
         &:after {
-            content: "Back to top"
+            content: "Back to Top"
         }
     }
 }

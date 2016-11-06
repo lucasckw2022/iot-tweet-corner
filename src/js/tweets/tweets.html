@@ -1,12 +1,14 @@
 <div class="tweets">
-  <div class="card card-block" data-ng-repeat="tweet in $tweets.tweets | limitTo:$tweets.limit">
-    <div class="card-title"><img src="{{tweet.user.profile_image_url}}" /> {{tweet.user.name}}</div>
+  <div class="card" data-ng-repeat="tweet in $tweets.tweets | limitTo:$tweets.limit">
     <div class="card-block">
-      {{ tweet.text }}
+      <div class="card-title"><img src="{{tweet.user.profile_image_url}}" /> {{tweet.user.name}}</div>
+      <div class="card-block">
+        {{ tweet.text }}
+      </div>
     </div>
     <img  data-ng-src={{tweet.entities.media[0].media_url}} data-ng-class="{'ng-hide' : !$tweets.imageEnable }" alt="">
   </div>
-  <button class="btn btn-secondary" ng-show="$tweets.tweets.length > 0" data-ng-click="$tweets.loadMore()">Load More</button>
+  <button class="btn btn-secondary" ng-show="$tweets.tweets.length > 0 && $tweets.limit <= $tweets.tweets.length" data-ng-click="$tweets.loadMore()">Load More</button>
 </div>
 <a  class="back-to-top btn btn-secondary" ng-show="$tweets.tweets.length > 0" href="#">
   <i class="fa fa-angle-up"></i>

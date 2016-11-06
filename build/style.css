@@ -20,18 +20,22 @@
       .top-area .search-area input[type="text"]:focus::-webkit-input-placeholder {
         color: #8899a6; }
     .top-area .search-area button {
+      transition: all .5s;
       background: #25aae2;
+      margin: 0 0 0 10px;
       color: #fff;
       border-radius: 5px;
       border: 1px #25aae2 solid;
-      text-transform: uppercase;
-      margin: 0 0 0 10px;
-      transition: all .5s; }
-      .top-area .search-area button:hover {
+      text-transform: uppercase; }
+      .top-area .search-area button:focus {
+        background: #25aae2; }
+      .top-area .search-area button:hover, .top-area .search-area button:active {
         background: #25aae2;
-        opacity: 0.8;
-        border: 1px #25aae2 solid;
+        color: #fff;
         transition: all .5s; }
+      .top-area .search-area button:hover {
+        opacity: 0.8;
+        border: 1px #25aae2 solid; }
 
 .search {
   position: absolute;
@@ -65,21 +69,25 @@
     .tweets .card img {
       width: 100%; }
   .tweets button {
-    transition: background-color .5s; }
-    .tweets button:hover {
+    transition: all .5s; }
+    .tweets button:focus {
+      background: #fff; }
+    .tweets button:hover, .tweets button:active {
       background: #f25b2c;
       color: #fff;
-      transition: background-color .5s; }
+      transition: all .5s; }
 
 .back-to-top {
+  transition: all .5s;
   position: fixed;
   bottom: 10px;
   right: 10px;
-  cursor: pointer;
-  transition: background-color .5s; }
-  .back-to-top:hover {
+  cursor: pointer; }
+  .back-to-top:focus {
+    background: #fff; }
+  .back-to-top:hover, .back-to-top:active {
     background: #f25b2c;
     color: #fff;
-    transition: background-color .5s; }
-    .back-to-top:hover:after {
-      content: "Back to top"; }
+    transition: all .5s; }
+  .back-to-top:hover:after {
+    content: "Back to Top"; }

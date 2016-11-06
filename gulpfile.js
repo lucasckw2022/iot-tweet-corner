@@ -55,4 +55,4 @@ gulp.task('watch', function(){
     gulp.watch(cssFiles, ['styles']);
 })
 
-gulp.task('default', ['watch', 'browserify', 'styles', 'html', 'build'])
+gulp.task('default', ['browserify', 'styles', 'html', 'watch'])
