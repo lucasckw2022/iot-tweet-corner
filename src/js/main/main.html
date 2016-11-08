@@ -13,3 +13,6 @@
 <section class="tweets-list">
   <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable" limit="$main.state.searchLimit"></tweets-list>
 </section>
+<div class="preloader-box" ng-show="$main.state.loadingTweets">
+  <div class="preloader"></div>
+</div>

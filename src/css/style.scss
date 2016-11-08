@@ -112,3 +112,26 @@ $main-color: #25aae2;
         }
     }
 }
+
+.preloader-box {
+    @include flex-box(center, nil, center);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .preloader {
+        border: 3px solid transparent;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        animation: preloader 2s linear infinite;
+    }
+}
+
+@keyframes preloader {
+    0% { transform: rotate(0deg);
+         border-bottom: 3px solid #3498db;}
+    100% { transform: rotate(360deg); 
+            border-bottom: 3px solid #3498db;}
+}

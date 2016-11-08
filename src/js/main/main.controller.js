@@ -6,7 +6,8 @@ export default class MainController {
                     imageToggleLabel: "Check to hide",
                     searched        : false,
                     fadeOut         : "",
-                    searchLimit     : 5
+                    searchLimit     : 5,
+                    loadingTweets   : false
                     };
       this.$http    = $http;
       this.$animate = $animate;
@@ -14,6 +15,7 @@ export default class MainController {
     search(){
         this.tweets        = "";
         this.state.fadeOut = "fade-out";
+        this.state.loadingTweets = true;
         this.$http.post("/authorize")
         .success(res =>{
             this.$http.post("/search",
@@ -21,6 +23,7 @@ export default class MainController {
                             { headers: { 'Content-Type' : 'application/X-www-form-urlencoded'}
             })
             .then(res =>{
+              this.state.loadingTweets = false;
               this.state.searched = true;
               res.data.data.statuses.length == 0 ? this.state.error = true : this.state.error = false;
               this.tweets = res.data.data.statuses;
