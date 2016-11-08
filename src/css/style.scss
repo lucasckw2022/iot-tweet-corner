@@ -21,7 +21,9 @@ $main-color: #25aae2;
     @include flex-box(center, column, center);
     transition: all .5s;
     h1 {
+     font-size: 7vh;
      font-weight: 700;
+     text-align: center;
      color: $main-color;
     }
     .search-area {
@@ -79,10 +81,9 @@ $main-color: #25aae2;
 
 .tweets {
     @include flex-box(nil,column);
-    width: 60%;
-    margin: 135px auto 40px auto;
+    margin: 170px auto 60px auto;
     .card {
-        width: 100%;
+        padding: 0;
         &:hover {
             background: #f5f8fa;
         }

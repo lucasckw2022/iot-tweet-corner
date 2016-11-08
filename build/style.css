@@ -5,7 +5,9 @@
   align-items: center;
   transition: all .5s; }
   .top-area h1 {
+    font-size: 7vh;
     font-weight: 700;
+    text-align: center;
     color: #25aae2; }
   .top-area .search-area {
     display: flex;
@@ -57,10 +59,9 @@
 .tweets {
   display: flex;
   flex-direction: column;
-  width: 60%;
-  margin: 135px auto 40px auto; }
+  margin: 170px auto 60px auto; }
   .tweets .card {
-    width: 100%; }
+    padding: 0; }
     .tweets .card:hover {
       background: #f5f8fa; }
     .tweets .card .card-title img {
