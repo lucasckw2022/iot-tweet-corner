@@ -5,7 +5,9 @@
   align-items: center;
   transition: all .5s; }
   .top-area h1 {
+    font-size: 7vh;
     font-weight: 700;
+    text-align: center;
     color: #25aae2; }
   .top-area .search-area {
     display: flex;
@@ -57,10 +59,9 @@
 .tweets {
   display: flex;
   flex-direction: column;
-  width: 60%;
-  margin: 135px auto 40px auto; }
+  margin: 170px auto 60px auto; }
   .tweets .card {
-    width: 100%; }
+    padding: 0; }
     .tweets .card:hover {
       background: #f5f8fa; }
     .tweets .card .card-title img {
@@ -91,3 +92,27 @@
     transition: all .5s; }
   .back-to-top:hover:after {
     content: "Back to Top"; }
+
+.preloader-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  .preloader-box .preloader {
+    border: 3px solid transparent;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: preloader 2s linear infinite; }
+
+@keyframes preloader {
+  0% {
+    transform: rotate(0deg);
+    border-bottom: 3px solid #3498db; }
+  100% {
+    transform: rotate(360deg);
+    border-bottom: 3px solid #3498db; } }

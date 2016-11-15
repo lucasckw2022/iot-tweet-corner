@@ -11,5 +11,8 @@
 <div ng-show="$main.state.error">Opsss. No Tweets Searched</div>
 </section>
 <section class="tweets-list">
-  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable" limit="$main.state.searchLimit"></tweets-list>
+  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable" limit="$main.searchLimit"></tweets-list>
 </section>
+<div class="preloader-box" ng-show="$main.state.loadingTweets">
+  <div class="preloader"></div>
+</div>

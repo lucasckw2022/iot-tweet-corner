@@ -21,7 +21,9 @@ $main-color: #25aae2;
     @include flex-box(center, column, center);
     transition: all .5s;
     h1 {
+     font-size: 7vh;
      font-weight: 700;
+     text-align: center;
      color: $main-color;
     }
     .search-area {
@@ -79,10 +81,9 @@ $main-color: #25aae2;
 
 .tweets {
     @include flex-box(nil,column);
-    width: 60%;
-    margin: 135px auto 40px auto;
+    margin: 170px auto 60px auto;
     .card {
-        width: 100%;
+        padding: 0;
         &:hover {
             background: #f5f8fa;
         }
@@ -110,4 +111,27 @@ $main-color: #25aae2;
             content: "Back to Top"
         }
     }
+}
+
+.preloader-box {
+    @include flex-box(center, nil, center);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .preloader {
+        border: 3px solid transparent;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        animation: preloader 2s linear infinite;
+    }
+}
+
+@keyframes preloader {
+    0% { transform: rotate(0deg);
+         border-bottom: 3px solid #3498db;}
+    100% { transform: rotate(360deg); 
+            border-bottom: 3px solid #3498db;}
 }
