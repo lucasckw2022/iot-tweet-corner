@@ -31802,7 +31802,7 @@ exports.default = _angular2.default.module('app', ['main', 'templates', 'tweets'
 'use strict';
 
 angular.module('templates', []).run(['$templateCache', function ($templateCache) {
-  $templateCache.put('main/main.html', '<section class="top-area {{$main.state.fadeOut}}" ng-class="$main.state.searched ? \'searched\' : \'search\'">\n  <h1>{{$main.state.title}}</h1>\n  <form class="search-area">\n    <input type="text" data-ng-model="$main.searchTweets" placeholder="Search Tweets Here"></input>\n    <button class="btn btn-primary" data-ng-click="$main.search()">Search</button>\n  </form>\n  <div class="image-toggle">\n    <input type="checkbox" data-ng-click="$main.imageToggle()" id="image-toggle"></input>\n    <label for="image-toggle">{{$main.state.imageToggleLabel}} Tweets Image</label>\n  </div>\n<div ng-show="$main.state.error">Opsss. No Tweets Searched</div>\n</section>\n<section class="tweets-list">\n  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable" limit="$main.state.searchLimit"></tweets-list>\n</section>\n<div class="preloader-box" ng-show="$main.state.loadingTweets">\n  <div class="preloader"></div>\n</div>');
+  $templateCache.put('main/main.html', '<section class="top-area {{$main.state.fadeOut}}" ng-class="$main.state.searched ? \'searched\' : \'search\'">\n  <h1>{{$main.state.title}}</h1>\n  <form class="search-area">\n    <input type="text" data-ng-model="$main.searchTweets" placeholder="Search Tweets Here"></input>\n    <button class="btn btn-primary" data-ng-click="$main.search()">Search</button>\n  </form>\n  <div class="image-toggle">\n    <input type="checkbox" data-ng-click="$main.imageToggle()" id="image-toggle"></input>\n    <label for="image-toggle">{{$main.state.imageToggleLabel}} Tweets Image</label>\n  </div>\n<div ng-show="$main.state.error">Opsss. No Tweets Searched</div>\n</section>\n<section class="tweets-list">\n  <tweets-list tweets="$main.tweets" image-enable="$main.state.imageEnable" limit="$main.searchLimit"></tweets-list>\n</section>\n<div class="preloader-box" ng-show="$main.state.loadingTweets">\n  <div class="preloader"></div>\n</div>');
   $templateCache.put('tweets/tweets.html', '<div class="tweets container-fluid">\n  <div class="row col-sm-12">\n    <div class="card col-sm-8 offset-sm-2" data-ng-repeat="tweet in $tweets.tweets | limitTo:$tweets.limit">\n      <div class="card-block">\n        <div class="card-title"><img src="{{tweet.user.profile_image_url}}" /> {{tweet.user.name}}</div>\n        <div class="card-block">\n          {{ tweet.text }}\n        </div>\n      </div>\n      <img  data-ng-src={{tweet.entities.media[0].media_url}} data-ng-class="{\'ng-hide\' : !$tweets.imageEnable }" alt="">\n    </div>\n  </div>\n  <div class="col-sm-12">\n    <button class="btn btn-secondary col-sm-4 offset-sm-4 col-xs-12" ng-show="$tweets.tweets.length > 0 && $tweets.limit <= $tweets.tweets.length" data-ng-click="$tweets.loadMore()">Load More</button>\n  </div>\n  <a  class="back-to-top btn btn-secondary" ng-show="$tweets.tweets.length > 0" href="#">\n    <i class="fa fa-angle-up"></i>\n  </a>\n</div>');
 }]);
 
@@ -31844,11 +31844,10 @@ var MainController = function () {
 
     this.state = { imageEnable: true,
       text: "Show",
-      title: "Mnubo's #IoT Tweets Corner",
+      title: "#IoT Tweets Corner",
       imageToggleLabel: "Check to hide",
       searched: false,
       fadeOut: "",
-      searchLimit: 5,
       loadingTweets: false
     };
     this.$http = $http;
@@ -31863,6 +31862,7 @@ var MainController = function () {
       this.tweets = "";
       this.state.fadeOut = "fade-out";
       this.state.loadingTweets = true;
+      this.searchLimit = 5;
       this.$http.post("/authorize").success(function (res) {
         _this.$http.post("/search", 'q=' + _this.searchTweets, { headers: { 'Content-Type': 'application/X-www-form-urlencoded' }
         }).then(function (res) {
@@ -31926,7 +31926,7 @@ var TweetsList = {
     bindings: {
         tweets: "<",
         imageEnable: "<",
-        limit: "<"
+        limit: "="
     },
     templateUrl: "tweets/tweets.html",
     controller: _tweetsController2.default,

@@ -2,11 +2,10 @@ export default class MainController {
     constructor($http, $animate){
       this.state = {imageEnable     : true, 
                     text            : "Show",
-                    title           : "Mnubo's #IoT Tweets Corner",
+                    title           : "#IoT Tweets Corner",
                     imageToggleLabel: "Check to hide",
                     searched        : false,
                     fadeOut         : "",
-                    searchLimit     : 5,
                     loadingTweets   : false
                     };
       this.$http    = $http;
@@ -16,6 +15,7 @@ export default class MainController {
         this.tweets        = "";
         this.state.fadeOut = "fade-out";
         this.state.loadingTweets = true;
+        this.searchLimit = 5;
         this.$http.post("/authorize")
         .success(res =>{
             this.$http.post("/search",

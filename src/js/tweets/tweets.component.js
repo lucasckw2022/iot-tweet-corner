@@ -4,7 +4,7 @@ var TweetsList = {
     bindings: {
         tweets     : "<",
         imageEnable: "<",
-        limit      : "<"
+        limit      : "="
     },
     templateUrl : "tweets/tweets.html",
     controller  : TweetsController,

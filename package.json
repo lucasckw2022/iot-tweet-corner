@@ -1,7 +1,7 @@
 {
-  "name": "mnubo_test",
+  "name": "iot tweet corner",
   "version": "1.0.0",
-  "description": "This is a exercise from Mnubo, in order for code review, I have also pushed the src folder and gulpfile",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
